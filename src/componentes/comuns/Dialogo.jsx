@@ -40,7 +40,7 @@ function Dialogo(props) {
                         Fechar
                     </Button>
                     <Button variant="success" type="submit">
-                        Salvar  <i className="bi bi-save"></i>
+                        Salvar 
                     </Button>
                 </Modal.Footer>
             </Form>

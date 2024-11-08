@@ -1,6 +1,6 @@
-export const getCategoriasAPI = async () => {
+export const getRoboAPI = async () => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/categoria`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/Robo`,
             {
                 method : "GET",
                 headers : {
@@ -12,9 +12,9 @@ export const getCategoriasAPI = async () => {
     return data;
 }
 
-export const getCategoriaPorCodigoAPI = async codigo => {
+export const getRoboPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/categoria/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/Robo/${codigo}`,
             {
                 method : "GET",
                 headers : {
@@ -26,9 +26,9 @@ export const getCategoriaPorCodigoAPI = async codigo => {
     return data;
 }
 
-export const deleteCategoriaPorCodigoAPI = async codigo => {
+export const deleteRoboPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/categoria/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/robo/${codigo}`,
             {
                 method : "DELETE",
                 headers : {
@@ -40,9 +40,9 @@ export const deleteCategoriaPorCodigoAPI = async codigo => {
     return data;
 }
 
-export const cadastraCategoriaAPI = async (objeto, metodo) => {
+export const cadastraRoboAPI = async (objeto, metodo) => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/categoria/`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/robo/`,
             {
                 method : metodo,
                 headers : {

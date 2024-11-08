@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import CategoriaContext from "./CategoriaContext";
 import {
-    getCategoriasAPI, getCategoriaPorCodigoAPI, deleteCategoriaPorCodigoAPI,
-    cadastraCategoriaAPI
-} from "../../../servicos/CategoriaServico";
+    getRoboAPI, getRoboPorCodigoAPI, deleteRoboPorCodigoAPI,
+    cadastraRoboAPI
+} from "../../../servicos/RoboServico";
 import Tabela from "./Tabela";
 import Formulario from "./Formulario";
 import Carregando from "../../comuns/Carregando";
+import './robos.css'
+import RoboContext from "./RoboContext";
 
-function Categoria() {
+function Robo() {
 
     const [alerta, setAlerta] = useState({ status: "", message: "" });
     const [listaObjetos, setListaObjetos] = useState([]);
@@ -28,7 +29,7 @@ function Categoria() {
     }
 
     const editarObjeto = async codigo => {
-        setObjeto(await getCategoriaPorCodigoAPI(codigo));
+        setObjeto(await getRoboPorCodigoAPI(codigo));
         setEditar(true);
         setAlerta({ status: "", message: "" });
         setExibirForm(true);
@@ -38,7 +39,7 @@ function Categoria() {
         e.preventDefault();
         const metodo = editar ? "PUT" : "POST";
         try {
-            let retornoAPI = await cadastraCategoriaAPI(objeto, metodo);
+            let retornoAPI = await cadastraRoboAPI(objeto, metodo);
             setAlerta({ status: retornoAPI.status, message: retornoAPI.message });
             setObjeto(retornoAPI.objeto);
             if (!editar) {
@@ -47,7 +48,7 @@ function Categoria() {
         } catch (err) {
             console.log("Erro: " + err);
         }
-        recuperaCategorias();
+        recuperaRobo();
     }
 
     const handleChange = (e) => {
@@ -56,10 +57,10 @@ function Categoria() {
         setObjeto({ ...objeto, [name]: value });
     }
 
-    const recuperaCategorias = async () => {
+    const recuperaRobo = async () => {
         setCarregando(true);
 
-        setListaObjetos(await getCategoriasAPI());
+        setListaObjetos(await getRoboAPI());
         /*        
         // Para testar o componente carregando sendo exibido
          setTimeout(()=> {
@@ -72,30 +73,32 @@ function Categoria() {
 
     const remover = async codigo => {
         if (window.confirm('Deseja remover este objeto?')) {
-            let retornoAPI = await deleteCategoriaPorCodigoAPI(codigo);
+            let retornoAPI = await deleteRoboPorCodigoAPI(codigo);
             setAlerta({
                 status: retornoAPI.status,
                 message: retornoAPI.message
             });
-            recuperaCategorias();
+            recuperaRobo();
         }
     }
 
     useEffect(() => {
-        recuperaCategorias();
+        recuperaRobo();
     }, []);
 
     return (
-        <CategoriaContext.Provider value={{
+        <RoboContext.Provider value={{
             alerta, listaObjetos, remover, objeto, editarObjeto,
             novoObjeto, acaoCadastrar, handleChange, exibirForm, setExibirForm
         }}>
             <Carregando carregando={carregando}>
-                <Tabela />
+                <div className="tabela">
+                    <Tabela />
+                </div>
             </Carregando>
             <Formulario />
-        </CategoriaContext.Provider>
+        </RoboContext.Provider>
     )
 }
 
-export default Categoria;
+export default Robo;

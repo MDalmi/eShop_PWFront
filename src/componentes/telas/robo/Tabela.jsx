@@ -1,23 +1,24 @@
 import { useContext } from "react";
-import CategoriaContext from "./CategoriaContext";
 import Alerta from "../../comuns/Alerta";
 import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import RoboContext from "./RoboContext";
 
 function Tabela() {
 
     const { alerta, listaObjetos, remover, 
-        novoObjeto, editarObjeto  } = useContext(CategoriaContext);
+        novoObjeto, editarObjeto  } = useContext(RoboContext);
 
     return (
-        <div style={{ padding: '20px' }} >
-            <h1>Categorias</h1>
+        <div style={{ padding: '20px' }}  className="tabela">
+            <h1>Robôs</h1>
             <Alerta alerta={alerta} />
             <Button variant="primary" onClick={()=>  novoObjeto()}>
-                Novo <i className="bi bi-file-earmark-plus"></i>
+                Novo 
             </Button>
             {listaObjetos.length === 0 &&
                 <h1>Nenhum registro encontrado</h1>}
+             
             {listaObjetos.length > 0 && (
                 <Table striped bordered hover responsive>
                     <thead>

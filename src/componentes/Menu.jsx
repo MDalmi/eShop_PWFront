@@ -5,17 +5,15 @@ function Menu() {
 
     return (
         <>
-
-            <div className='menu'>
+            <div className='background'>
                 <div className='itens-menu'>
                     <a href='/'> Home </a>
-                    <a href='/categorias'>Robôs </a>
-                    <a href='/categorias'>Missões </a>
-                    <a href='/categorias'>Sobre</a>
+                    <a href='/robos'>Robôs </a>
+                    <a href='/missoes'>Missões </a>
+                    <a href='/sobre'>Sobre</a>
                 </div>
+                <Outlet />
             </div>
-
-            <Outlet />
         </>
     );
 }

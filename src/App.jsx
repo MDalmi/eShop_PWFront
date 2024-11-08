@@ -6,8 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Menu from './componentes/Menu';
 import Home from './componentes/telas/Home';
 import Sobre from './componentes/telas/Sobre';
-import Categoria from './componentes/telas/categoria/Categoria';
-
+import Robo from './componentes/telas/robo/Robo'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,8 +21,8 @@ const router = createBrowserRouter([
         element : <Sobre/>
       },
       {
-        path : "/categorias",
-        element : <Categoria/>
+        path : "/robos",
+        element : <Robo/>
       }      
     ]
   }
