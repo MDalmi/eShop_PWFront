@@ -1,21 +1,29 @@
 import { useState, useEffect } from "react";
+import AluguelContext from "./AluguelContext";
+import { getRoboAPI } from "../../../servicos/RoboServico";
 import {
-    getRoboAPI, getRoboPorCodigoAPI, deleteRoboPorCodigoAPI,
-    cadastraRoboAPI
-} from "../../../servicos/RoboServico";
+    getAluguelAPI, getAluguelPorCodigoAPI, cadastraAluguelAPI,
+    deleteAluguelPorCodigoAPI
+} from "../../../servicos/AluguelServico";
 import Tabela from "./Tabela";
+import './aluguel.css'
 import Formulario from "./Formulario";
 import Carregando from "../../comuns/Carregando";
-import './robos.css'
-import RoboContext from "./RoboContext";
 
-function Robo() {
+function Aluguel() {
 
     const [alerta, setAlerta] = useState({ status: "", message: "" });
     const [listaObjetos, setListaObjetos] = useState([]);
+    const [listaRobos, setListaRobos] = useState([]);
     const [editar, setEditar] = useState(false);
     const [exibirForm, setExibirForm] = useState(false);
-    const [objeto, setObjeto] = useState({ codigo: "", nome: "" });
+    const [objeto, setObjeto] = useState({
+        codigo: 0,
+        nome: "",
+        robo: "",
+        planeta: "",
+        descricao: ""
+    });
     const [carregando, setCarregando] = useState(false);
 
     const novoObjeto = () => {
@@ -24,16 +32,15 @@ function Robo() {
         setObjeto({
             codigo: 0,
             nome: "",
-            capacidade: 0,
-            descricao: "",
-            valor_aluguel: 0,
-            tipo: ""
+            robo: "",
+            planeta: "",
+            descricao: ""
         })
         setExibirForm(true);
     }
 
     const editarObjeto = async codigo => {
-        setObjeto(await getRoboPorCodigoAPI(codigo));
+        setObjeto(await getAluguelPorCodigoAPI(codigo));
         setEditar(true);
         setAlerta({ status: "", message: "" });
         setExibirForm(true);
@@ -43,7 +50,7 @@ function Robo() {
         e.preventDefault();
         const metodo = editar ? "PUT" : "POST";
         try {
-            let retornoAPI = await cadastraRoboAPI(objeto, metodo);
+            let retornoAPI = await cadastraAluguelAPI(objeto, metodo);
             setAlerta({ status: retornoAPI.status, message: retornoAPI.message });
             setObjeto(retornoAPI.objeto);
             if (!editar) {
@@ -52,7 +59,7 @@ function Robo() {
         } catch (err) {
             console.log("Erro: " + err);
         }
-        recuperaRobo();
+        recuperaAluguel();
     }
 
     const handleChange = (e) => {
@@ -61,56 +68,46 @@ function Robo() {
         setObjeto({ ...objeto, [name]: value });
     }
 
-    /*    const recuperaRobo = async () => {
-           setCarregando(true);
-           setListaObjetos(await getRoboAPI());
-           setTimeout(() => {
-               console.log('atraso de 3 segundos');
-               setCarregando(false);
-           }, 3000);
-           setCarregando(false);
-       } */
-
     const recuperaRobo = async () => {
+        setListaRobos(await getRoboAPI());
+    }
+
+    const recuperaAluguel = async () => {
         setCarregando(true);
-
-        setListaObjetos(await getRoboAPI());
-        /*        
-        // Para testar o componente carregando sendo exibido
-         setTimeout(()=> {
-                    console.log('atraso de 3 segundos');
-                    setCarregando(false);
-                }, 3000); */
+        setListaObjetos(await getAluguelAPI());
         setCarregando(false);
-
     }
 
     const remover = async codigo => {
         if (window.confirm('Deseja remover este objeto?')) {
-            let retornoAPI = await deleteRoboPorCodigoAPI(codigo);
+            let retornoAPI = await deleteAluguelPorCodigoAPI(codigo);
             setAlerta({
                 status: retornoAPI.status,
                 message: retornoAPI.message
             });
-            recuperaRobo();
+            recuperaAluguel();
         }
     }
 
     useEffect(() => {
         recuperaRobo();
+        recuperaAluguel();
     }, []);
 
     return (
-        <RoboContext.Provider value={{
+        <AluguelContext.Provider value={{
             alerta, listaObjetos, remover, objeto, editarObjeto,
-            novoObjeto, acaoCadastrar, handleChange, exibirForm, setExibirForm
+            novoObjeto, acaoCadastrar, handleChange, exibirForm, setExibirForm,
+            listaRobos
         }}>
             <Carregando carregando={carregando}>
-                <Tabela />
+                <div className="tabela">
+                    <Tabela />
+                </div>
             </Carregando>
             <Formulario />
-        </RoboContext.Provider>
+        </AluguelContext.Provider>
     )
 }
 
-export default Robo;
+export default Aluguel;

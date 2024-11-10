@@ -1,6 +1,6 @@
-export const getRoboAPI = async () => {
+export const getAluguelAPI = async () => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/robo`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/aluguel`,
             {
                 method : "GET",
                 headers : {
@@ -12,9 +12,9 @@ export const getRoboAPI = async () => {
     return data;
 }
 
-export const getRoboPorCodigoAPI = async codigo => {
+export const getAluguelPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/Robo/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/aluguel/${codigo}`,
             {
                 method : "GET",
                 headers : {
@@ -26,9 +26,9 @@ export const getRoboPorCodigoAPI = async codigo => {
     return data;
 }
 
-export const deleteRoboPorCodigoAPI = async codigo => {
+export const deleteAluguelPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/Robo/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/aluguel/${codigo}`,
             {
                 method : "DELETE",
                 headers : {
@@ -40,9 +40,9 @@ export const deleteRoboPorCodigoAPI = async codigo => {
     return data;
 }
 
-export const cadastraRoboAPI = async (objeto, metodo) => {
+export const cadastraAluguelAPI = async (objeto, metodo) => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/Robo/`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/aluguel/`,
             {
                 method : metodo,
                 headers : {

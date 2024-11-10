@@ -7,6 +7,7 @@ import Menu from './componentes/Menu';
 import Home from './componentes/telas/Home';
 import Sobre from './componentes/telas/Sobre';
 import Robo from './componentes/telas/robo/Robo'
+import Aluguel from './componentes/telas/aluguel/Aluguel';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,9 +22,13 @@ const router = createBrowserRouter([
         element : <Sobre/>
       },
       {
-        path : "/robos",
+        path : "/robo",
         element : <Robo/>
-      }      
+      },
+      {
+        path : "/aluguel",
+        element : <Aluguel/>
+      }       
     ]
   }
 ])

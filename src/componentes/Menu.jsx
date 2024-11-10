@@ -8,8 +8,8 @@ function Menu() {
             <div className='background'>
                 <div className='itens-menu'>
                     <a href='/'> Home </a>
-                    <a href='/robos'>Robôs </a>
-                    <a href='/missoes'>Missões </a>
+                    <a href='/robo'>Robôs </a>
+                    <a href='/aluguel'>Aluguel </a>
                     <a href='/sobre'>Sobre</a>
                 </div>
                 <Outlet />
