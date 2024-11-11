@@ -6,7 +6,7 @@ import {
     deleteAluguelPorCodigoAPI
 } from "../../../servicos/AluguelServico";
 import Tabela from "./Tabela";
-import './aluguel.css'
+import '../Home.css'
 import Formulario from "./Formulario";
 import Carregando from "../../comuns/Carregando";
 
@@ -95,19 +95,20 @@ function Aluguel() {
     }, []);
 
     return (
-        <AluguelContext.Provider value={{
-            alerta, listaObjetos, remover, objeto, editarObjeto,
-            novoObjeto, acaoCadastrar, handleChange, exibirForm, setExibirForm,
-            listaRobos
-        }}>
-            <Carregando carregando={carregando}>
+        <div className="robo">
+            <AluguelContext.Provider value={{
+                alerta, listaObjetos, remover, objeto, editarObjeto,
+                novoObjeto, acaoCadastrar, handleChange, exibirForm, setExibirForm, listaRobos
+            }}>
                 <div className="tabela">
-                    <Tabela />
+                    <Carregando carregando={carregando}>
+                        <Tabela />
+                    </Carregando>
                 </div>
-            </Carregando>
-            <Formulario />
-        </AluguelContext.Provider>
-    )
+                <Formulario />
+            </AluguelContext.Provider>
+        </div>
+    );
 }
 
 export default Aluguel;

@@ -6,7 +6,7 @@ import {
 import Tabela from "./Tabela";
 import Formulario from "./Formulario";
 import Carregando from "../../comuns/Carregando";
-import './robos.css'
+import '../Home.css'
 import RoboContext from "./RoboContext";
 
 function Robo() {
@@ -61,16 +61,6 @@ function Robo() {
         setObjeto({ ...objeto, [name]: value });
     }
 
-    /*    const recuperaRobo = async () => {
-           setCarregando(true);
-           setListaObjetos(await getRoboAPI());
-           setTimeout(() => {
-               console.log('atraso de 3 segundos');
-               setCarregando(false);
-           }, 3000);
-           setCarregando(false);
-       } */
-
     const recuperaRobo = async () => {
         setCarregando(true);
 
@@ -101,16 +91,21 @@ function Robo() {
     }, []);
 
     return (
-        <RoboContext.Provider value={{
-            alerta, listaObjetos, remover, objeto, editarObjeto,
-            novoObjeto, acaoCadastrar, handleChange, exibirForm, setExibirForm
-        }}>
-            <Carregando carregando={carregando}>
-                <Tabela />
-            </Carregando>
-            <Formulario />
-        </RoboContext.Provider>
-    )
+        <div className="robo">
+            <RoboContext.Provider value={{
+                alerta, listaObjetos, remover, objeto, editarObjeto,
+                novoObjeto, acaoCadastrar, handleChange, exibirForm, setExibirForm
+            }}>
+                <div className="tabela-container">
+                    <Carregando carregando={carregando}>
+                        <Tabela />
+                    </Carregando>
+                </div>
+                <Formulario />
+            </RoboContext.Provider>
+        </div>
+    );
+    
 }
 
 export default Robo;

@@ -14,7 +14,7 @@ export const getRoboAPI = async () => {
 
 export const getRoboPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/Robo/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/robo/${codigo}`,
             {
                 method : "GET",
                 headers : {

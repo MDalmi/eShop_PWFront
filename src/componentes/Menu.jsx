@@ -10,7 +10,6 @@ function Menu() {
                     <a href='/'> Home </a>
                     <a href='/robo'>Robôs </a>
                     <a href='/aluguel'>Aluguel </a>
-                    <a href='/sobre'>Sobre</a>
                 </div>
                 <Outlet />
             </div>

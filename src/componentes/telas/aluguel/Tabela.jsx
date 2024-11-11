@@ -10,12 +10,13 @@ function Tabela() {
         novoObjeto, editarObjeto  } = useContext(AluguelContext);
 
     return (
-        <div style={{ padding: '20px' }} >
-            <h1>Produtos</h1>
+        <div style={{ padding: '50px', width : '2000px' }} >
+            <h1 style={{color : 'white', textAlign : "center"}}>Painel de Controle: Aluguel</h1>
             <Alerta alerta={alerta} />
             <Button variant="primary" onClick={()=>  novoObjeto()}>
-                Novo <i className="bi bi-file-earmark-plus"></i>
-            </Button>
+                Realizar Novo Aluguel 
+                
+            </Button><br/><br/>
             {listaObjetos.length === 0 &&
                 <h1>Nenhum registro encontrado</h1>}
             {listaObjetos.length > 0 && (
@@ -48,7 +49,6 @@ function Tabela() {
                                 <td>{objeto.robo_nome}</td>
                                 <td>{objeto.planeta}</td>
                                 <td>{objeto.descricao}</td>
-                                {/*<td>{formatoMoeda(objeto.valor)}</td>*/}
                               
                             </tr>
                         ))}
