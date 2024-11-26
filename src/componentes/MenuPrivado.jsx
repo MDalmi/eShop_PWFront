@@ -12,14 +12,14 @@ function MenuPrivado() {
             <div className='background'>
                 <div className='itens-menu'>
                     <a href='/'> Home </a>
-                    <a href='/robo'>Robôs</a>
-                    <a href='/aluguel'>Aluguel </a>
+                    <a href='/privado/robo'>Robôs</a>
+                    <a href='/privado/aluguel'>Aluguel </a>
                     {usuario ?
                         <a exact="true"
-                            to="/" onClick={() => logout()}>Logout</a>
+                            href="/" onClick={() => logout()}>Logout</a>
                         :
                         <a exact="true"
-                            to="/login">login</a>
+                            to="/login">Login</a>
                     }
                 </div>
                 <Outlet />

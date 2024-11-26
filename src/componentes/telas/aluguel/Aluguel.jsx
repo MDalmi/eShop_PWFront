@@ -83,22 +83,18 @@ function Aluguel() {
     }
 
     const recuperaRobo = async () => {
-        try {
-            setListaRobos(await getRoboAPI());
-        } catch (error) {
-            Navigate("/login", { replace: true });
-        }
+
+        setListaRobos(await getRoboAPI());
+
 
     }
 
     const recuperaAluguel = async () => {
-        try {
-            setCarregando(true);
-            setListaObjetos(await getAluguelAPI());
-            setCarregando(false);
-        } catch (error) {
-            Navigate("/login", { replace: true });
-        }
+
+        setCarregando(true);
+        setListaObjetos(await getAluguelAPI());
+        setCarregando(false);
+
 
     }
 

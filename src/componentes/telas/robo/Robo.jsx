@@ -74,14 +74,11 @@ function Robo() {
     }
 
     const recuperaRobo = async () => {
-        try {
-            setCarregando(true);
-            setListaObjetos(await getRoboAPI());
-            setCarregando(false);
-        } catch (error) {
-            Navigate("/login", { replace: true });
 
-        }
+        setCarregando(true);
+        setListaObjetos(await getRoboAPI());
+        setCarregando(false);
+
 
 
     }
