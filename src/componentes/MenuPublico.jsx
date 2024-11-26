@@ -1,15 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import './Menu.css'
 
-function Menu() {
+function MenuPublico() {
 
     return (
         <>
             <div className='background'>
                 <div className='itens-menu'>
                     <a href='/'> Home </a>
-                    <a href='/robo'>Robôs </a>
-                    <a href='/aluguel'>Aluguel </a>
+                    <a href='/login'> Login </a>
                 </div>
                 <Outlet />
             </div>
@@ -17,4 +16,4 @@ function Menu() {
     );
 }
 
-export default Menu;
+export default MenuPublico;

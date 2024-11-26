@@ -3,34 +3,51 @@ import '@popperjs/core/dist/cjs/popper.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Menu from './componentes/Menu';
+import MenuPrivado from './componentes/MenuPrivado';
 import Home from './componentes/telas/Home';
 import Robo from './componentes/telas/robo/Robo'
 import Aluguel from './componentes/telas/aluguel/Aluguel';
+import Login from './componentes/telas/login/Login';
+import MenuPublico from './componentes/MenuPublico';
 const router = createBrowserRouter([
   {
     path: "/",
-    element : <Menu/>,
-    children : [
+    element: <MenuPublico />,
+    children: [
       {
-        index : true,
-        element : <Home/>
+        index: true,
+        element: <Home />
       },
       {
-        path : "/robo",
-        element : <Robo/>
+        path: "login",
+        element: <Login />
+      }
+    ]
+  },
+  {
+    path: "/privado",
+    element: <MenuPrivado />,
+    children: [
+      {
+        index: true,
+        element: <Home />
       },
       {
-        path : "/aluguel",
-        element : <Aluguel/>
-      }       
+        index: "robos",
+        element: <Robo />
+      },
+      {
+        index: "aluguel",
+        element: <Aluguel />
+      }
     ]
   }
+
 ])
 
 function App() {
   return (
-      <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   );
 }
 

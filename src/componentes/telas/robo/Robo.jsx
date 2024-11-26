@@ -8,6 +8,7 @@ import Formulario from "./Formulario";
 import Carregando from "../../comuns/Carregando";
 import '../Home.css'
 import RoboContext from "./RoboContext";
+import { Navigate } from "react-router-dom";
 
 function Robo() {
 
@@ -19,24 +20,34 @@ function Robo() {
     const [carregando, setCarregando] = useState(false);
 
     const novoObjeto = () => {
-        setEditar(false);
-        setAlerta({ status: "", message: "" });
-        setObjeto({
-            codigo: 0,
-            nome: "",
-            capacidade: 0,
-            descricao: "",
-            valor_aluguel: 0,
-            tipo: ""
-        })
-        setExibirForm(true);
+        try {
+            setEditar(false);
+            setAlerta({ status: "", message: "" });
+            setObjeto({
+                codigo: 0,
+                nome: "",
+                capacidade: 0,
+                descricao: "",
+                valor_aluguel: 0,
+                tipo: ""
+            })
+            setExibirForm(true);
+        } catch (error) {
+            Navigate("/login", { replace: true });
+        }
+
     }
 
     const editarObjeto = async codigo => {
-        setObjeto(await getRoboPorCodigoAPI(codigo));
-        setEditar(true);
-        setAlerta({ status: "", message: "" });
-        setExibirForm(true);
+        try {
+            setObjeto(await getRoboPorCodigoAPI(codigo));
+            setEditar(true);
+            setAlerta({ status: "", message: "" });
+            setExibirForm(true);
+        } catch (error) {
+            Navigate("/login", { replace: true });
+        }
+
     }
 
     const acaoCadastrar = async e => {
@@ -51,6 +62,7 @@ function Robo() {
             }
         } catch (err) {
             console.log("Erro: " + err);
+            Navigate("/login", { replace: true });
         }
         recuperaRobo();
     }
@@ -62,28 +74,32 @@ function Robo() {
     }
 
     const recuperaRobo = async () => {
-        setCarregando(true);
+        try {
+            setCarregando(true);
+            setListaObjetos(await getRoboAPI());
+            setCarregando(false);
+        } catch (error) {
+            Navigate("/login", { replace: true });
 
-        setListaObjetos(await getRoboAPI());
-        /*        
-        // Para testar o componente carregando sendo exibido
-         setTimeout(()=> {
-                    console.log('atraso de 3 segundos');
-                    setCarregando(false);
-                }, 3000); */
-        setCarregando(false);
+        }
+
 
     }
 
     const remover = async codigo => {
-        if (window.confirm('Deseja remover este objeto?')) {
-            let retornoAPI = await deleteRoboPorCodigoAPI(codigo);
-            setAlerta({
-                status: retornoAPI.status,
-                message: retornoAPI.message
-            });
-            recuperaRobo();
+        try {
+            if (window.confirm('Deseja remover este objeto?')) {
+                let retornoAPI = await deleteRoboPorCodigoAPI(codigo);
+                setAlerta({
+                    status: retornoAPI.status,
+                    message: retornoAPI.message
+                });
+                recuperaRobo();
+            }
+        } catch (error) {
+            Navigate("/login", { replace: true });
         }
+
     }
 
     useEffect(() => {
@@ -105,7 +121,7 @@ function Robo() {
             </RoboContext.Provider>
         </div>
     );
-    
+
 }
 
 export default Robo;

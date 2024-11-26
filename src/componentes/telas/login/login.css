@@ -1,0 +1,63 @@
+.background2 {
+    background-image: url('/public/fotos/foto1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background-attachment: fixed;
+    /* Fixa o fundo para evitar gaps */
+    display: flex;
+    /* Habilita o uso de flexbox */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+}
+
+.background2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.itens-menu2 {
+    background: rgba(255, 255, 255, 0.1);
+    /* Adiciona um fundo transparente ao menu */
+    padding: 10rem;
+    border-radius: 8px;
+    color: rgb(240, 240, 240);
+    font-variant: small-caps;
+    font-size: xx-large;
+    z-index: 3;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 700px;
+    /* Ajuste a largura do formulário */
+    margin: 0 auto;
+    /* Centraliza o formulário */
+}
+
+button {
+    margin-top: 1rem;
+    /* Adiciona espaço acima do botão */
+}
+
+.campos_entrada {
+    width: 500px;
+}

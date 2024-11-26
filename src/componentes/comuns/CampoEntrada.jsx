@@ -7,8 +7,8 @@ function CampoEntrada({ value, name, label,
     return (
         <FloatingLabel controlId={id} label={label} className="mb-3">
             <Form.Control type={tipo} required={requerido} name={name}
-                value={value}
-                onChange={onchange} readOnly={readonly} maxLength={maxCaracteres} />
+                value={value} placeholder=" "
+                onChange={onchange} readOnly={readonly}  maxLength={maxCaracteres} />
             <Form.Control.Feedback>{msgvalido}</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
                 {msginvalido}

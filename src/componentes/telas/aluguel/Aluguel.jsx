@@ -9,6 +9,7 @@ import Tabela from "./Tabela";
 import '../Home.css'
 import Formulario from "./Formulario";
 import Carregando from "../../comuns/Carregando";
+import { Navigate } from "react-router-dom";
 
 function Aluguel() {
 
@@ -27,23 +28,34 @@ function Aluguel() {
     const [carregando, setCarregando] = useState(false);
 
     const novoObjeto = () => {
-        setEditar(false);
-        setAlerta({ status: "", message: "" });
-        setObjeto({
-            codigo: 0,
-            nome: "",
-            robo: "",
-            planeta: "",
-            descricao: ""
-        })
-        setExibirForm(true);
+        try {
+            setEditar(false);
+            setAlerta({ status: "", message: "" });
+            setObjeto({
+                codigo: 0,
+                nome: "",
+                robo: "",
+                planeta: "",
+                descricao: ""
+            })
+            setExibirForm(true);
+        } catch (error) {
+            Navigate("/login", { replace: true });
+        }
+
     }
 
     const editarObjeto = async codigo => {
-        setObjeto(await getAluguelPorCodigoAPI(codigo));
-        setEditar(true);
-        setAlerta({ status: "", message: "" });
-        setExibirForm(true);
+        try {
+            setObjeto(await getAluguelPorCodigoAPI(codigo));
+            setEditar(true);
+            setAlerta({ status: "", message: "" });
+            setExibirForm(true);
+        } catch (error) {
+            Navigate("/login", { replace: true });
+
+        }
+
     }
 
     const acaoCadastrar = async e => {
@@ -58,6 +70,8 @@ function Aluguel() {
             }
         } catch (err) {
             console.log("Erro: " + err);
+            Navigate("/login", { replace: true });
+
         }
         recuperaAluguel();
     }
@@ -69,24 +83,39 @@ function Aluguel() {
     }
 
     const recuperaRobo = async () => {
-        setListaRobos(await getRoboAPI());
+        try {
+            setListaRobos(await getRoboAPI());
+        } catch (error) {
+            Navigate("/login", { replace: true });
+        }
+
     }
 
     const recuperaAluguel = async () => {
-        setCarregando(true);
-        setListaObjetos(await getAluguelAPI());
-        setCarregando(false);
+        try {
+            setCarregando(true);
+            setListaObjetos(await getAluguelAPI());
+            setCarregando(false);
+        } catch (error) {
+            Navigate("/login", { replace: true });
+        }
+
     }
 
     const remover = async codigo => {
-        if (window.confirm('Deseja remover este objeto?')) {
-            let retornoAPI = await deleteAluguelPorCodigoAPI(codigo);
-            setAlerta({
-                status: retornoAPI.status,
-                message: retornoAPI.message
-            });
-            recuperaAluguel();
+        try {
+            if (window.confirm('Deseja remover este objeto?')) {
+                let retornoAPI = await deleteAluguelPorCodigoAPI(codigo);
+                setAlerta({
+                    status: retornoAPI.status,
+                    message: retornoAPI.message
+                });
+                recuperaAluguel();
+            }
+        } catch (error) {
+            Navigate("/login", { replace: true });
         }
+
     }
 
     useEffect(() => {
