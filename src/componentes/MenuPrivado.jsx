@@ -19,7 +19,7 @@ function MenuPrivado() {
                             href="/" onClick={() => logout()}>Logout</a>
                         :
                         <a exact="true"
-                            to="/login">Login</a>
+                            href="/login">Login</a>
                     }
                 </div>
                 <Outlet />
