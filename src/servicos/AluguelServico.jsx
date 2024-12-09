@@ -2,7 +2,7 @@ import { getToken } from '../seguranca/Autenticacao';
 
 export const getAluguelAPI = async () => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/aluguel`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/privado/aluguel`,
             {
                 method : "GET",
                 headers : {
@@ -17,7 +17,7 @@ export const getAluguelAPI = async () => {
 
 export const getAluguelPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/aluguel/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/privado/aluguel/${codigo}`,
             {
                 method : "GET",
                 headers : {
@@ -32,7 +32,7 @@ export const getAluguelPorCodigoAPI = async codigo => {
 
 export const deleteAluguelPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/aluguel/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/privado/aluguel/${codigo}`,
             {
                 method : "DELETE",
                 headers : {
@@ -47,7 +47,7 @@ export const deleteAluguelPorCodigoAPI = async codigo => {
 
 export const cadastraAluguelAPI = async (objeto, metodo) => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/aluguel/`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/privado/aluguel/`,
             {
                 method : metodo,
                 headers : {

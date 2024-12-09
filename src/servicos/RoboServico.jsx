@@ -2,7 +2,7 @@ import { getToken } from "../seguranca/Autenticacao";
 
 export const getRoboAPI = async () => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/robo`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/privado/robo`,
             {
                 method : "GET",
                 headers : {
@@ -17,7 +17,7 @@ export const getRoboAPI = async () => {
 
 export const getRoboPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/robo/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/privado/robo/${codigo}`,
             {
                 method : "GET",
                 headers : {
@@ -32,7 +32,7 @@ export const getRoboPorCodigoAPI = async codigo => {
 
 export const deleteRoboPorCodigoAPI = async codigo => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/Robo/${codigo}`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/privado/Robo/${codigo}`,
             {
                 method : "DELETE",
                 headers : {
@@ -47,7 +47,7 @@ export const deleteRoboPorCodigoAPI = async codigo => {
 
 export const cadastraRoboAPI = async (objeto, metodo) => {
     const response = await 
-        fetch(`${process.env.REACT_APP_ENDERECO_API}/Robo/`,
+        fetch(`${process.env.REACT_APP_ENDERECO_API}/privado/Robo/`,
             {
                 method : metodo,
                 headers : {

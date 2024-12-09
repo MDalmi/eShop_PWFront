@@ -13,7 +13,7 @@ function MenuPrivado() {
                 <div className='itens-menu'>
                     <a href='/'> Home </a>
                     <a href='/privado/robo'>Robôs</a>
-                    <a href='/privado/aluguel'>Aluguel </a>
+                    <a href='/privado/aluguel'> Aluguel </a>
                     {usuario ?
                         <a exact="true"
                             href="/" onClick={() => logout()}>Logout</a>

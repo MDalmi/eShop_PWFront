@@ -29,15 +29,15 @@ const router = createBrowserRouter([
     element: <MenuPrivado />,
     children: [
       {
-        index: true, // Define a rota padrão
+        index: true, 
         element: <Home />
       },
       {
-        path: "robo", // Corrigido para 'path' ao invés de 'index'
+        path: "robo", 
         element: <Robo />
       },
       {
-        path: "aluguel", // Corrigido para 'path' ao invés de 'index'
+        path: "aluguel", 
         element: <Aluguel />
       }
     ]

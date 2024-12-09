@@ -17,6 +17,7 @@ function Formulario() {
             exibirForm={exibirForm} setExibirForm={setExibirForm}>
             <Alerta alerta={alerta} />
             <Col xs={12} md={12}>
+                console.log(objeto)
                 <CampoEntrada value={objeto.codigo}
                     id="txtCodido" name="codigo" label="Código"
                     tipo="number" onchange={handleChange}
